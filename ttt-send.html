@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+		<title>The Tip Token Platform - Home</title>
+		<meta content="The Tip Token platform - manage your SAN names, use the marketplace, and track your PoA stats" name="description">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+		<link rel="shortcut icon" href="src/images/favicon.ico">
+
+		<link href="src/css/morris.css" rel="stylesheet">
+		<link href="src/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+		<link href="src/css/icons.css" rel="stylesheet" type="text/css">
+		<link href="src/css/style.css" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+<!--	<div id="preloader"><div id="status"><div class="spinner"></div></div></div> -->
+
+<header id="topnav">
+    <div class="topbar-main">
+        <div class="container-fluid">
+
+            <div id="navBalance">
+              You have <span id="balance"> </span> TTT
+              <span class="float-right">
+                <img src="src/images/tttImage_dark.jpg" alt="" height="20" class="logo-large">
+              </span>
+            </div>
+
+            <div class="clearfix"></div>
+        </div>
+    </div>
+
+    <!-- MENU Start -->
+    <div class="navbar-custom">
+        <div class="container-fluid">
+            <div id="navigation">
+                <ul class="navigation-menu">
+                    <li>
+                        <a href="index.html"><i class="ti-home"></i>Dashboard</a>
+                    </li>
+
+                    <li>
+                        <a href="san-manage.html"><i class="ti-light-bulb"></i>SAN Management</a>
+                    </li>
+
+                    <li>
+                        <a href="san-analytics.html"><i class="ti-crown"></i>PoA Analytics</a>
+                    </li>
+
+                    <li >
+                        <a href="san-marketplace.html"><i class="ti-bookmark-alt"></i>Marketplace</a>
+                    </li>
+
+                    <li>
+                      <a href="ttt-send.html"><i class="ti-uppercase"></i>Send TTT</a>
+                    </li>
+
+                    <li>
+                      <a href="san-mint.html"><i class="ti-bolt"></i>Mint a SAN</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+	<div class="wrapper">
+		<div class="container-fluid">
+
+			<!-- Page-Title -->
+			<div class="row">
+					<div class="col-sm-12">
+							<div class="page-title-box">
+									<div class="btn-group pull-right">
+											<ol class="breadcrumb hide-phone p-0 m-0">
+													<li class="breadcrumb-item"><a href="#">The Tip Token</a></li>
+													<li class="breadcrumb-item active">Send TTT</li>
+											</ol>
+									</div>
+									<h4 class="page-title">Send TTT</h4>
+							</div>
+					</div>
+			</div>
+
+
+			<div class="row">
+
+					<div class="col-xl-4">
+						<div class="card m-b-30">
+
+
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon3"><b>Eth address or SAN</b></span>
+                </div>
+                <input type="text" class="form-control" id="receiver" aria-describedby="basic-addon3" placeholder="e.g jon.tip">
+              </div>
+
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon3"><b>Amount</b></span>
+                </div>
+                <input type="text" class="form-control" id="amount" aria-describedby="basic-addon3" placeholder="e.g., 95">
+              </div>
+							<div id="txSuc" class="alert alert-success" role="alert" style="display:none;">
+									<strong>Transaction Sent!</strong> Tx Id :
+							</div>
+              <button type="button" id="send" class="btn btn-primary" onclick="App.sendTip()">Send TTT</button>
+
+						</div>
+					</div>
+
+
+
+			</div>
+
+
+		</div>
+	</div>
+
+	<footer class="footer">
+
+  </footer>
+
+<script src="src/js/jquery.js"></script>
+<script src="src/js/bootstrap.min.js"></script>
+<script src="src/js/web3.min.js"></script>
+<script src="src/js/truffle-contract.js"></script>
+<script src="src/js/TTT.js"></script>
+<script src="src/js/TTTSan.js"></script>
+<script src="src/js/popper.min.js"></script>
+<script src="src/js/modernizr.min.js"></script>
+<script src="src/js/waves.js"></script>
+<script src="src/js/jquery.slimscroll.js"></script>
+<script src="src/js/jquery.nicescroll.js"></script>
+<script src="src/js/jquery.scrollTo.min.js"></script>
+<script src="src/js/app.js"></script>
+
+<script>
+$(document).ready(function() {
+  $('[data-toggle=offcanvas]').click(function() {
+    $('.row-offcanvas').toggleClass('active');
+  });
+});
+</script>
+
+</body>
+</html>
