@@ -85,7 +85,7 @@ contract TTTSan is ERC721Token, Ownable {
     sanNameToId[sn] = sanId;
     sanNameToAddress[sn] = msg.sender;
     ownerToSanName[msg.sender].push(sn);
-    sanSlots[msg.sender] = sanSlots[msg.sender] - 1;
+    sanSlots[msg.sender] = sanSlots[msg.sender].sub(1);
     SanMinted(msg.sender, sanId, sn);
     return sn;
   }
@@ -123,16 +123,21 @@ contract TTTSan is ERC721Token, Ownable {
   }
 
   // used for initial check to not waste gas
-  function getSANitized(string _sanName) external constant returns (string) {
+  function getSANitized(string _sanName) external view returns (string) {
     return SANitize(_sanName);
   }
 
   function buySanSlot(address _sanOwner,  uint256 _tip) external returns(bool) {
     require(_tip >= sanTTTCost);
-    ttt.transferFrom(msg.sender, wallet, _tip);
     sanSlots[_sanOwner] = sanSlots[_sanOwner].add(1);
+    ttt.transferFrom(msg.sender, wallet, _tip);
     emit SanSlotsPurchase(_sanOwner, 1);
     return true;
+  }
+
+  function setSanPrevOwner(uint256 _sanId, address _prevOwner) external isMarketAddress {
+    SAN s = sans[_sanId];
+    s.prevOwner = _prevOwner;
   }
 
   // OWNER FUNCTIONS
@@ -244,7 +249,7 @@ contract TTTSan is ERC721Token, Ownable {
     return string(b);
   }
 
-  function byteToLower(bytes1 _b) internal constant returns (bytes1) {
+  function byteToLower(bytes1 _b) internal view returns (bytes1) {
     if(_b >= bytes1(0x41) && _b <= bytes1(0x5A))
       return bytes1(uint8(_b) + 32);
     return _b;

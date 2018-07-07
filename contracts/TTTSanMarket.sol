@@ -2,7 +2,6 @@ pragma solidity ^0.4.21;
 
 import "./TTTSan.sol";
 
-
 contract TTTSanMarket is Ownable {
 
   address public tttTokenAddress = 0x3a518A5F5AC3F3dBF4ECd6b91dfBbb8422832996;
@@ -90,14 +89,16 @@ contract TTTSanMarket is Ownable {
   }
 
   function marketDirectPurchase(uint256 _sanId, uint256 _amount) external {
+    assert(isSanIdOnMarket[_sanId]);
     assert(ttt.balanceOf(msg.sender) >= _amount);
-    uint256 mi = sanIdToMarketIdx[_sanId];
-    MarketSAN ms = marketSans[mi];
+    uint256 idxOfSan = sanIdToMarketIdx[_sanId];
+    MarketSAN ms = marketSans[idxOfSan];
     assert(_amount >= ms.bidMin);
+    isSanIdOnMarket[_sanId] = false;
+    tttSan.setSanPrevOwner(_sanId, ms.owner);
     ttt.transferFrom(msg.sender, ms.owner, _amount);
     tttSan.transferFrom(this, msg.sender, _sanId);
-    isSanIdOnMarket[_sanId] = false;
-    removeFromMarketSAN(mi);
+    removeFromMarketSAN(idxOfSan);
     emit SanMarketDirectPurchase(msg.sender, _sanId, _amount, block.timestamp);
   }
 
@@ -118,11 +119,14 @@ contract TTTSanMarket is Ownable {
 
   */
 
-  function refundMarketBid(address _to, uint256 _sanId) external onlyOwner {
-    tttSan.transferFrom(this, _to, _sanId);
+  function refundMarketBid(uint256 _sanId) external onlyOwner {
+    assert(isSanIdOnMarket[_sanId]);
+    isSanIdOnMarket[_sanId] = false;
     uint256 idxOfSan = sanIdToMarketIdx[_sanId];
+    MarketSAN ms = marketSans[idxOfSan];
+    tttSan.transferFrom(this, ms.owner, _sanId);
+    emit MarketBidRefund(ms.owner, _sanId);
     removeFromMarketSAN(idxOfSan);
-    emit MarketBidRefund(_to, _sanId);
   }
 
   function setSanAddress(address _sanAddress) external onlyOwner {
