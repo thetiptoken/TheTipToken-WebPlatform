@@ -233,6 +233,20 @@ var sanAbi =
 	},
 	{
 		"constant": true,
+		"inputs": [],
+		"name": "sanMaxAmount",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
 		"inputs": [
 			{
 				"name": "_owner",
@@ -617,7 +631,7 @@ var sanAbi =
 		"type": "function"
 	},
 	{
-		"constant": false,
+		"constant": true,
 		"inputs": [
 			{
 				"name": "_sanId",
@@ -632,7 +646,7 @@ var sanAbi =
 			}
 		],
 		"payable": false,
-		"stateMutability": "nonpayable",
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -814,6 +828,32 @@ var sanAbi =
 		"constant": false,
 		"inputs": [
 			{
+				"name": "_sanId",
+				"type": "uint256"
+			},
+			{
+				"name": "_sanName",
+				"type": "string"
+			},
+			{
+				"name": "_prevOwner",
+				"type": "address"
+			},
+			{
+				"name": "_newOwner",
+				"type": "address"
+			}
+		],
+		"name": "marketSale",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
 				"name": "_cost",
 				"type": "uint256"
 			}
@@ -846,11 +886,11 @@ var sanAbi =
 		"constant": false,
 		"inputs": [
 			{
-				"name": "_mask",
-				"type": "string"
+				"name": "_amount",
+				"type": "uint256"
 			}
 		],
-		"name": "setSanMask",
+		"name": "setSanMaxAmount",
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",

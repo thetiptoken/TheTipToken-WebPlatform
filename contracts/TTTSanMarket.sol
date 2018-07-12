@@ -6,7 +6,7 @@ contract TTTSanMarket is Ownable {
 
   address public tttTokenAddress = 0x3a518A5F5AC3F3dBF4ECd6b91dfBbb8422832996;
   TTTToken ttt;
-  address sanAddress = 0x75ffe84fe6cd8511461eba34419a8f52a76982ec;
+  address sanAddress = 0xb6b3005C7Ce88cF32F7058EE0bb939A5DEF4c17c;
   TTTSan tttSan;
 
   mapping(uint256=>bool) isSanIdOnMarket;
@@ -55,7 +55,7 @@ contract TTTSanMarket is Ownable {
   function getMarketSanInfo(uint256 _idx) public view returns(
       uint256 minBid, string sanName, uint256 sanId
     ) {
-    MarketSAN ms = marketSans[_idx];
+    MarketSAN storage ms = marketSans[_idx];
     minBid = ms.bidMin;
     sanName = ms.sanName;
     sanId = ms.sanId;
@@ -92,10 +92,10 @@ contract TTTSanMarket is Ownable {
     assert(isSanIdOnMarket[_sanId]);
     assert(ttt.balanceOf(msg.sender) >= _amount);
     uint256 idxOfSan = sanIdToMarketIdx[_sanId];
-    MarketSAN ms = marketSans[idxOfSan];
+    MarketSAN storage ms = marketSans[idxOfSan];
     assert(_amount >= ms.bidMin);
     isSanIdOnMarket[_sanId] = false;
-    tttSan.setSanPrevOwner(_sanId, ms.owner);
+    tttSan.marketSale(_sanId, ms.sanName, ms.owner, msg.sender);
     ttt.transferFrom(msg.sender, ms.owner, _amount);
     tttSan.transferFrom(this, msg.sender, _sanId);
     removeFromMarketSAN(idxOfSan);
@@ -123,7 +123,7 @@ contract TTTSanMarket is Ownable {
     assert(isSanIdOnMarket[_sanId]);
     isSanIdOnMarket[_sanId] = false;
     uint256 idxOfSan = sanIdToMarketIdx[_sanId];
-    MarketSAN ms = marketSans[idxOfSan];
+    MarketSAN storage ms = marketSans[idxOfSan];
     tttSan.transferFrom(this, ms.owner, _sanId);
     emit MarketBidRefund(ms.owner, _sanId);
     removeFromMarketSAN(idxOfSan);

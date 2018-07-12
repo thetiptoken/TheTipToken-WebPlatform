@@ -19,11 +19,13 @@ contract TTTSan is ERC721Token, Ownable {
   uint256 public sanTTTCost;
   uint256 public sanMaxLength;
   uint256 public sanMinLength;
+  uint256 public sanMaxAmount;
 
   string public baseUrl = "https://thetiptoken.io/arv/img/";
 
   mapping(string=>bool) sanOwnership;
   mapping(address=>uint256) sanSlots;
+  mapping(address=>uint256) sanOwnerAmount;
   mapping(string=>uint256) sanNameToId;
   mapping(string=>address) sanNameToAddress;
   mapping(address=>string[]) ownerToSanName;
@@ -51,26 +53,25 @@ contract TTTSan is ERC721Token, Ownable {
     sanTTTCost = 2 ether;
     sanMaxLength = 16;
     sanMinLength = 2;
+    sanMaxAmount = 500;
     ttt = TTTToken(tttTokenAddress);
     // gen0 san
   /* "NeverGonnaGiveYouUp.NeverGonnaLetYouDown" */
+    string memory gen0 = "NeverGonnaGiveYouUp.NeverGonnaLetYouDown";
     SAN memory s = SAN({
-        sanName: "NeverGonnaGiveYouUp.NeverGonnaLetYouDown",
+        sanName: gen0,
         timeAlive: block.timestamp,
         timeLastMove: block.timestamp,
         prevOwner: msg.sender
     });
     uint256 sanId = sans.push(s) - 1;
-    _mint(msg.sender, sanId);
-    sanNameToId["NeverGonnaGiveYouUp.NeverGonnaLetYouDown"] = sanId;
-    sanNameToAddress["NeverGonnaGiveYouUp.NeverGonnaLetYouDown"] = msg.sender;
-    ownerToSanName[msg.sender].push("NeverGonnaGiveYouUp.NeverGonnaLetYouDown");
-    SanMinted(msg.sender, sanId, "NeverGonnaGiveYouUp.NeverGonnaLetYouDown");
+    _sanMint(sanId, msg.sender, "gen0.jpeg", gen0);
+    sanOwnership[gen0] = true;
   }
 
   function sanMint(string _sanName, string _sanageUri) external returns (string) {
     assert(sanSlots[msg.sender] >= 1);
-    string memory sn = SANitize(_sanName);
+    string memory sn = sanitize(_sanName);
     SAN memory s = SAN({
         sanName: sn,
         timeAlive: block.timestamp,
@@ -78,19 +79,13 @@ contract TTTSan is ERC721Token, Ownable {
         prevOwner: msg.sender
     });
     uint256 sanId = sans.push(s) - 1;
-    _mint(msg.sender, sanId);
-
-    _setTokenURI(sanId, _sanageUri);
-
-    sanNameToId[sn] = sanId;
-    sanNameToAddress[sn] = msg.sender;
-    ownerToSanName[msg.sender].push(sn);
+    _sanMint(sanId, msg.sender, _sanageUri, sn);
+    sanOwnership[sn] = true;
     sanSlots[msg.sender] = sanSlots[msg.sender].sub(1);
-    SanMinted(msg.sender, sanId, sn);
     return sn;
   }
 
-  function getSANOwner(uint256 _sanId) public returns (address) {
+  function getSANOwner(uint256 _sanId) public view returns (address) {
     return ownerOf(_sanId);
   }
 
@@ -124,7 +119,7 @@ contract TTTSan is ERC721Token, Ownable {
 
   // used for initial check to not waste gas
   function getSANitized(string _sanName) external view returns (string) {
-    return SANitize(_sanName);
+    return sanitize(_sanName);
   }
 
   function buySanSlot(address _sanOwner,  uint256 _tip) external returns(bool) {
@@ -135,10 +130,12 @@ contract TTTSan is ERC721Token, Ownable {
     return true;
   }
 
-  function setSanPrevOwner(uint256 _sanId, address _prevOwner) external isMarketAddress {
-    SAN s = sans[_sanId];
+  function marketSale(uint256 _sanId, string _sanName, address _prevOwner, address _newOwner) external isMarketAddress {
+    SAN storage s = sans[_sanId];
     s.prevOwner = _prevOwner;
+    sanNameToAddress[_sanName] = _newOwner;
   }
+
 
   // OWNER FUNCTIONS
 
@@ -151,6 +148,10 @@ contract TTTSan is ERC721Token, Ownable {
     require(_length > 0);
     if(_pos == 0) sanMinLength = _length;
     else sanMaxLength = _length;
+  }
+
+  function setSanMaxAmount(uint256 _amount) external onlyOwner {
+    sanMaxAmount = _amount;
   }
 
   function ownerAddSanSlot(address _sanOwner, uint256 _slotCount) external onlyOwner {
@@ -171,7 +172,7 @@ contract TTTSan is ERC721Token, Ownable {
   }
 
   function updateTokenUri(uint256 _sanId, string _newUri) public onlyOwner {
-    // TODO
+    _setTokenURI(_sanId, strConcat(baseUrl, _newUri));
   }
 
   function emptyContract() public onlyOwner {
@@ -188,29 +189,31 @@ contract TTTSan is ERC721Token, Ownable {
         prevOwner: _address
     });
     uint256 sanId = sans.push(s) - 1;
-    _mint(_address, sanId);
-
-    // _setTokenURI(sanId, strConcat(baseUrl, _sanName));
-    _setTokenURI(sanId, _sanageUri);
-
-    sanNameToId[_sanName] = sanId;
-    sanNameToAddress[_sanName] = _address;
-    ownerToSanName[_address].push(_sanName);
-    SanMinted(_address, sanId, _sanName);
+    _sanMint(sanId, _address, _sanageUri, _sanName);
     return _sanName;
   }
 
   // INTERNAL FUNCTIONS
 
-  function SANitize(string _sanName) internal returns(string) {
+  function sanitize(string _sanName) internal returns(string) {
     string memory sn = sanToLower(_sanName);
     assert(isValidSan(sn));
     assert(!sanOwnership[sn]);
-    sanOwnership[sn] = true;
     return sn;
   }
 
-  function isValidSan(string _sanName) internal returns(bool) {
+  function _sanMint(uint256 _sanId, address _owner, string _sanageUri, string _sanName) internal {
+    assert(sanOwnerAmount[_owner] < sanMaxAmount);
+    _mint(_owner, _sanId);
+    _setTokenURI(_sanId, strConcat(baseUrl, _sanageUri));
+    sanNameToId[_sanName] = _sanId;
+    sanNameToAddress[_sanName] = _owner;
+    ownerToSanName[_owner].push(_sanName);
+    sanOwnerAmount[_owner] = sanOwnerAmount[_owner].add(1);
+    emit SanMinted(_owner, _sanId, _sanName);
+  }
+
+  function isValidSan(string _sanName) internal view returns(bool) {
     bytes memory wb = bytes(_sanName);
     uint slen = wb.length;
     assert(slen <= sanMaxLength && slen > sanMinLength);
@@ -249,7 +252,7 @@ contract TTTSan is ERC721Token, Ownable {
     return string(b);
   }
 
-  function byteToLower(bytes1 _b) internal view returns (bytes1) {
+  function byteToLower(bytes1 _b) internal pure returns (bytes1) {
     if(_b >= bytes1(0x41) && _b <= bytes1(0x5A))
       return bytes1(uint8(_b) + 32);
     return _b;

@@ -324,10 +324,6 @@ var marketSanAbi =
     "constant": false,
     "inputs": [
       {
-        "name": "_to",
-        "type": "address"
-      },
-      {
         "name": "_sanId",
         "type": "uint256"
       }

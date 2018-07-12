@@ -1,6 +1,6 @@
 var contractAddress = "0x3a518A5F5AC3F3dBF4ECd6b91dfBbb8422832996";
-var sanAddress = "0x75ffe84fe6cd8511461eba34419a8f52a76982ec";
-var marketSanAddress = "0xe05cd782747e30b6add20d9bd0da5075a2105ab1";
+var sanAddress = "0xb6b3005C7Ce88cF32F7058EE0bb939A5DEF4c17c";
+var marketSanAddress = "0xB421cf13AC2D7eb73E042E29eFe056D29C3A9F99";
 var wallet = "0x5BcFCbdE79895D3D6A115Baf5386ae5463df2aAF";
 var token;
 var san;
@@ -63,8 +63,9 @@ function sanToImage(sanName, addr) {
     type: 'post',
     data: { "sanb" : img },
     success: function(link) {
+      link = link + ".png";
       console.log(link);
-      if(link.includes("https://thetiptoken.io/arv/img")) {
+    //  if(link.includes("https://thetiptoken.io/arv/img")) {
         san.sanMint(sanName, link, function(err, res) {
           // or MM lose connection
           if(err) {
@@ -75,11 +76,11 @@ function sanToImage(sanName, addr) {
           else {
             var sucOut = '<a href="https://ropsten.etherscan.io/tx/'+res+'" target="_blank">'+res+'</a>';
             $("#txSuc").append(sucOut).show();
-            var outp = 'Your SANage : <img src="'+link+'" alt="icon" height="128px" width="128px" />'
+            var outp = 'Your SANage : <img src=https://thetiptoken.io/arv/img/'+link+'" alt="icon" height="128px" width="128px" />'
             $("#sanaged").html(outp);
           }
         });
-      }
+      //}
     }
   });
 }
@@ -179,7 +180,7 @@ App = {
     web3.eth.getAccounts(function(a,b) {
       token.approve(sanAddress, web3.toWei(slotCost, "ether"), {from: b[0]}, function(err, tx) {
         $("#sanSlotBuyTx").modal('show');
-        $("#slotTx").append(tx);
+        $("#slotTx").append("<a href='https://ropsten.etherscan.io/tx/"+tx+"' target='_blank'>"+tx+"</a> (opens on new tab)");
         var interval = null;
         var max_attempts = 1000;
         var attempts = 0;
@@ -199,7 +200,7 @@ App = {
                 } else if(txInfo.status == "0x1") {
                   san.buySanSlot(b[0], web3.toWei(slotCost, "ether"), function(err, res) {
                     $("#sanSlotBuyTx").modal('show');
-                    $("#slotTx").append("<br><br>Tx Id : " + res + "<br><br>Slot will show once the tx is complete. You can exit this window");
+                    $("#slotTx").append("<br><br>Tx Id : <a href='https://ropsten.etherscan.io/tx/"+res+"' target='_blank'>" + res + "</a><br><br>Slot will show once the tx is complete. You can exit this window");
                   });
                 }
             }
@@ -236,7 +237,7 @@ App = {
         if(!err) {
           san.approve(marketSanAddress, si, {from: b[0]}, function(err, tx) {
             $("#sanMarketTx").modal('show');
-            $("#slotTx").append(tx);
+            $("#slotTx").append("<a href='https://ropsten.etherscan.io/tx/"+tx+"' target='_blank'>"+tx+"</a> (opens on new tab)");
             var interval = null;
             var max_attempts = 1000;
             var attempts = 0;
@@ -256,7 +257,7 @@ App = {
                     } else if(txInfo.status == "0x1") {
                       marketSan.addSanToMarket(si, sanToSale, web3.toWei(minBd, "ether"), function(err, res) {
                         $("#sanMarketTx").modal('show');
-                        $("#slotTx").append("<br><br>Tx Id : " + res + "<br><br>San will be added once tx is complete. You can exit this window");
+                        $("#slotTx").append("<br><br>Tx Id : <a href='https://ropsten.etherscan.io/tx/"+res+"' target='_blank'>" + res + "</a><br><br>San will be added once the tx is complete. You can exit this window");
                       });
                     }
                 }
@@ -294,7 +295,7 @@ App = {
     web3.eth.getAccounts(function(a,b) {
       token.approve(marketSanAddress, web3.toWei(minBd, "ether"), {from: b[0]}, function(err, tx) {
         $("#sanMarketTx").modal('show');
-        $("#slotTx").append(tx);
+        $("#slotTx").append("<a href='https://ropsten.etherscan.io/tx/"+tx+"' target='_blank'>"+tx+"</a> (opens on new tab)");
         var interval = null;
         var max_attempts = 1000;
         var attempts = 0;
@@ -314,7 +315,7 @@ App = {
                 } else if(txInfo.status == "0x1") {
                   marketSan.marketDirectPurchase(sanId, web3.toWei(minBd, "ether"), function(err, res) {
                     $("#sanMarketTx").modal('show');
-                    $("#slotTx").append("<br><br>Tx Id : " + res + "<br><br>San will be added once tx is complete. You can exit this window");
+                    $("#slotTx").append("<br><br>Tx Id : <a href='https://ropsten.etherscan.io/tx/"+res+"' target='_blank'>" + res + "</a><br><br>San will be added once the tx is complete. You can exit this window");
                   });
                 }
             }

@@ -1,0 +1,119 @@
+{
+  "contractName": "TTTRegistar",
+  "abi": [],
+  "bytecode": "0x60606040523415600e57600080fd5b603580601b6000396000f3006060604052600080fd00a165627a7a72305820b00bd8f78706dc915d276ddb0c7ff314277f4ece0b76d156a3d00c71ccd2110d0029",
+  "deployedBytecode": "0x6060604052600080fd00a165627a7a72305820b00bd8f78706dc915d276ddb0c7ff314277f4ece0b76d156a3d00c71ccd2110d0029",
+  "sourceMap": "91:31:0:-;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "91:31:0:-;;;;;",
+  "source": "pragma solidity ^0.4.21;\r\n\r\nimport \"zeppelin-solidity/contracts/ownership/Ownable.sol\";\r\n\r\ncontract TTTRegistar {\r\n\r\n\r\n\r\n}\r\n",
+  "sourcePath": "C:\\TTT_Platform\\contracts\\TTTRegistar.sol",
+  "ast": {
+    "absolutePath": "/C/TTT_Platform/contracts/TTTRegistar.sol",
+    "exportedSymbols": {
+      "TTTRegistar": [
+        3
+      ]
+    },
+    "id": 4,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".21"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:0"
+      },
+      {
+        "absolutePath": "zeppelin-solidity/contracts/ownership/Ownable.sol",
+        "file": "zeppelin-solidity/contracts/ownership/Ownable.sol",
+        "id": 2,
+        "nodeType": "ImportDirective",
+        "scope": 4,
+        "sourceUnit": 408,
+        "src": "28:59:0",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 3,
+        "linearizedBaseContracts": [
+          3
+        ],
+        "name": "TTTRegistar",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 4,
+        "src": "91:31:0"
+      }
+    ],
+    "src": "0:124:0"
+  },
+  "legacyAST": {
+    "absolutePath": "/C/TTT_Platform/contracts/TTTRegistar.sol",
+    "exportedSymbols": {
+      "TTTRegistar": [
+        3
+      ]
+    },
+    "id": 4,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".21"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:0"
+      },
+      {
+        "absolutePath": "zeppelin-solidity/contracts/ownership/Ownable.sol",
+        "file": "zeppelin-solidity/contracts/ownership/Ownable.sol",
+        "id": 2,
+        "nodeType": "ImportDirective",
+        "scope": 4,
+        "sourceUnit": 408,
+        "src": "28:59:0",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 3,
+        "linearizedBaseContracts": [
+          3
+        ],
+        "name": "TTTRegistar",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 4,
+        "src": "91:31:0"
+      }
+    ],
+    "src": "0:124:0"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.21+commit.dfe3193c.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "2.0.0",
+  "updatedAt": "2018-04-29T15:24:12.007Z"
+}
