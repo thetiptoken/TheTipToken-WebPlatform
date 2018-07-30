@@ -1,12 +1,16 @@
-pragma solidity ^0.4.21;
+/// @title The Tip Tokn SAN marketplace
+/// @author Jonathan Teel (jonathan.teel@thetiptoken.io)
+/// @dev Marketplace for trading TTTSan tokens
+
+pragma solidity ^0.4.24;
 
 import "./TTTSan.sol";
 
 contract TTTSanMarket is Ownable {
 
-  address public tttTokenAddress = 0x3a518A5F5AC3F3dBF4ECd6b91dfBbb8422832996;
+  address public tttTokenAddress = 0x3a518A5F5AC3F3dBF4ECd6b91dfBbb8422832996; // TESTNET
   TTTToken ttt;
-  address sanAddress = 0xb6b3005C7Ce88cF32F7058EE0bb939A5DEF4c17c;
+  address public sanAddress = 0x6fa333ac2e2737a522b5d28bf1a1ea88d2a76f3a; // TESTNET
   TTTSan tttSan;
 
   mapping(uint256=>bool) isSanIdOnMarket;
@@ -31,7 +35,7 @@ contract TTTSanMarket is Ownable {
   event SanMarketDirectPurchase(address newOwner, uint256 sanId, uint256 price, uint256 time);
   event MarketBidRefund(address to, uint256 sanId);
 
-  function TTTSanMarket() {
+  constructor() {
     ttt = TTTToken(tttTokenAddress);
     tttSan = TTTSan(sanAddress);
   }
@@ -62,8 +66,8 @@ contract TTTSanMarket is Ownable {
   }
 
   function addSanToMarket(uint256 _sanId, string _sanName, uint256 _price) external {
-    require(tttSan.ownerOf(_sanId) == msg.sender);
-    require(!isSanIdOnMarket[_sanId]);
+    require(tttSan.ownerOf(_sanId) == msg.sender, "msg.sender is not san owner");
+    require(!isSanIdOnMarket[_sanId], "san is on market already");
     MarketSAN memory ms = MarketSAN({
         sanId: _sanId,
         sanName: _sanName,
@@ -89,8 +93,8 @@ contract TTTSanMarket is Ownable {
   }
 
   function marketDirectPurchase(uint256 _sanId, uint256 _amount) external {
-    assert(isSanIdOnMarket[_sanId]);
-    assert(ttt.balanceOf(msg.sender) >= _amount);
+    require(isSanIdOnMarket[_sanId], "san is not on market");
+    require(ttt.balanceOf(msg.sender) >= _amount, "min balance not met");
     uint256 idxOfSan = sanIdToMarketIdx[_sanId];
     MarketSAN storage ms = marketSans[idxOfSan];
     assert(_amount >= ms.bidMin);
@@ -102,25 +106,8 @@ contract TTTSanMarket is Ownable {
     emit SanMarketDirectPurchase(msg.sender, _sanId, _amount, block.timestamp);
   }
 
-  // TODO
-  /*
-  function acceptBid(uint256 _sanId, address _bidder) external {
-    require(marketSanAddresOwnerToId[msg.sender] == _sanId);
-    ttt.transferFrom(msg.sender, ms.owner, _amount);
-    tttSan.transferFrom(this, msg.sender, _sanId);
-    uint256 idxOfSan = sanIdToMarketIdx[_sanId];
-    removeFromMarketSAN(idxOfSan);
-
-  }
-
-  function bidForSan(uint256 _sanId, address _bidder) external {
-    // only add a bid if it's higher than the current one
-  }
-
-  */
-
   function refundMarketBid(uint256 _sanId) external onlyOwner {
-    assert(isSanIdOnMarket[_sanId]);
+    require(isSanIdOnMarket[_sanId], "san is not on market");
     isSanIdOnMarket[_sanId] = false;
     uint256 idxOfSan = sanIdToMarketIdx[_sanId];
     MarketSAN storage ms = marketSans[idxOfSan];

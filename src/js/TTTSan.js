@@ -34,6 +34,20 @@ var sanAbi =
 		"type": "function"
 	},
 	{
+		"constant": true,
+		"inputs": [],
+		"name": "sanMaxFree",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"constant": false,
 		"inputs": [
 			{
@@ -206,6 +220,20 @@ var sanAbi =
 			{
 				"name": "",
 				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "sanCurrentTotal",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
 			}
 		],
 		"payable": false,
@@ -403,6 +431,10 @@ var sanAbi =
 			{
 				"name": "prevOwner",
 				"type": "address"
+			},
+			{
+				"name": "sanageLink",
+				"type": "string"
 			}
 		],
 		"payable": false,
@@ -486,6 +518,11 @@ var sanAbi =
 		"type": "constructor"
 	},
 	{
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "fallback"
+	},
+	{
 		"anonymous": false,
 		"inputs": [
 			{
@@ -521,7 +558,48 @@ var sanAbi =
 				"type": "uint256"
 			}
 		],
-		"name": "SanSlotsPurchase",
+		"name": "SanSlotPurchase",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "cost",
+				"type": "uint256"
+			}
+		],
+		"name": "SanCostUpdated",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "sanMinLength",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "sanMaxLength",
+				"type": "uint256"
+			}
+		],
+		"name": "SanLengthReqChange",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "sanMaxAmount",
+				"type": "uint256"
+			}
+		],
+		"name": "SanMaxAmountChange",
 		"type": "event"
 	},
 	{
@@ -677,6 +755,25 @@ var sanAbi =
 			}
 		],
 		"name": "getSanName",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_sanId",
+				"type": "uint256"
+			}
+		],
+		"name": "getSanageLink",
 		"outputs": [
 			{
 				"name": "",
@@ -900,6 +997,20 @@ var sanAbi =
 		"constant": false,
 		"inputs": [
 			{
+				"name": "_sanMaxFree",
+				"type": "uint256"
+			}
+		],
+		"name": "setSanMaxFree",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
 				"name": "_sanOwner",
 				"type": "address"
 			},
@@ -909,6 +1020,24 @@ var sanAbi =
 			}
 		],
 		"name": "ownerAddSanSlot",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_sanOwner",
+				"type": "address[]"
+			},
+			{
+				"name": "_slotCount",
+				"type": "uint256[]"
+			}
+		],
+		"name": "ownerAddSanSlotBatch",
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
@@ -977,7 +1106,16 @@ var sanAbi =
 	{
 		"constant": false,
 		"inputs": [],
-		"name": "emptyContract",
+		"name": "emptyTTT",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [],
+		"name": "emptyEther",
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",

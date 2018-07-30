@@ -437,14 +437,14 @@
     "absolutePath": "zeppelin-solidity/contracts/token/ERC721/DeprecatedERC721.sol",
     "exportedSymbols": {
       "DeprecatedERC721": [
-        1834
+        2098
       ]
     },
-    "id": 1835,
+    "id": 2099,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1810,
+        "id": 2074,
         "literals": [
           "solidity",
           "^",
@@ -457,10 +457,10 @@
       {
         "absolutePath": "zeppelin-solidity/contracts/token/ERC721/ERC721.sol",
         "file": "./ERC721.sol",
-        "id": 1811,
+        "id": 2075,
         "nodeType": "ImportDirective",
-        "scope": 1835,
-        "sourceUnit": 1889,
+        "scope": 2099,
+        "sourceUnit": 2153,
         "src": "26:22:5",
         "symbolAliases": [],
         "unitAlias": ""
@@ -468,40 +468,40 @@
       {
         "baseContracts": [
           {
-            "arguments": [],
+            "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 1812,
+              "id": 2076,
               "name": "ERC721",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1888,
+              "referencedDeclaration": 2152,
               "src": "359:6:5",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_ERC721_$1888",
+                "typeIdentifier": "t_contract$_ERC721_$2152",
                 "typeString": "contract ERC721"
               }
             },
-            "id": 1813,
+            "id": 2077,
             "nodeType": "InheritanceSpecifier",
             "src": "359:6:5"
           }
         ],
         "contractDependencies": [
-          1861,
-          1881,
-          1888,
-          1995
+          2125,
+          2145,
+          2152,
+          2259
         ],
         "contractKind": "contract",
         "documentation": "@title ERC-721 methods shipped in OpenZeppelin v1.7.0, removed in the latest version of the standard\n@dev Only use this interface for compatibility with previously deployed contracts\n@dev Use ERC721 for interacting with new contracts which are standard-compliant",
         "fullyImplemented": false,
-        "id": 1834,
+        "id": 2098,
         "linearizedBaseContracts": [
-          1834,
-          1888,
-          1881,
-          1861,
-          1995
+          2098,
+          2152,
+          2145,
+          2125,
+          2259
         ],
         "name": "DeprecatedERC721",
         "nodeType": "ContractDefinition",
@@ -509,7 +509,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 1818,
+            "id": 2082,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -517,15 +517,15 @@
             "name": "takeOwnership",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1816,
+              "id": 2080,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1815,
+                  "id": 2079,
                   "name": "_tokenId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1818,
+                  "scope": 2082,
                   "src": "393:16:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -534,7 +534,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1814,
+                    "id": 2078,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "393:7:5",
@@ -551,12 +551,12 @@
             },
             "payable": false,
             "returnParameters": {
-              "id": 1817,
+              "id": 2081,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "417:0:5"
             },
-            "scope": 1834,
+            "scope": 2098,
             "src": "370:48:5",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -565,7 +565,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 1825,
+            "id": 2089,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -573,15 +573,15 @@
             "name": "transfer",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1823,
+              "id": 2087,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1820,
+                  "id": 2084,
                   "name": "_to",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1825,
+                  "scope": 2089,
                   "src": "439:11:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -590,7 +590,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1819,
+                    "id": 2083,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "439:7:5",
@@ -604,10 +604,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 1822,
+                  "id": 2086,
                   "name": "_tokenId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1825,
+                  "scope": 2089,
                   "src": "452:16:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -616,7 +616,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1821,
+                    "id": 2085,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "452:7:5",
@@ -633,12 +633,12 @@
             },
             "payable": false,
             "returnParameters": {
-              "id": 1824,
+              "id": 2088,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "476:0:5"
             },
-            "scope": 1834,
+            "scope": 2098,
             "src": "421:56:5",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -647,7 +647,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 1833,
+            "id": 2097,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -655,15 +655,15 @@
             "name": "tokensOf",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1828,
+              "id": 2092,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1827,
+                  "id": 2091,
                   "name": "_owner",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1833,
+                  "scope": 2097,
                   "src": "498:14:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -672,7 +672,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1826,
+                    "id": 2090,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "498:7:5",
@@ -689,25 +689,25 @@
             },
             "payable": false,
             "returnParameters": {
-              "id": 1832,
+              "id": 2096,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1831,
+                  "id": 2095,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1833,
+                  "scope": 2097,
                   "src": "535:9:5",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
                     "typeIdentifier": "t_array$_t_uint256_$dyn_memory_ptr",
-                    "typeString": "uint256[] memory"
+                    "typeString": "uint256[]"
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 1829,
+                      "id": 2093,
                       "name": "uint256",
                       "nodeType": "ElementaryTypeName",
                       "src": "535:7:5",
@@ -716,13 +716,13 @@
                         "typeString": "uint256"
                       }
                     },
-                    "id": 1830,
+                    "id": 2094,
                     "length": null,
                     "nodeType": "ArrayTypeName",
                     "src": "535:9:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
-                      "typeString": "uint256[] storage pointer"
+                      "typeString": "uint256[]"
                     }
                   },
                   "value": null,
@@ -731,14 +731,14 @@
               ],
               "src": "534:11:5"
             },
-            "scope": 1834,
+            "scope": 2098,
             "src": "480:66:5",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 1835,
+        "scope": 2099,
         "src": "330:218:5"
       }
     ],
@@ -748,14 +748,14 @@
     "absolutePath": "zeppelin-solidity/contracts/token/ERC721/DeprecatedERC721.sol",
     "exportedSymbols": {
       "DeprecatedERC721": [
-        1834
+        2098
       ]
     },
-    "id": 1835,
+    "id": 2099,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1810,
+        "id": 2074,
         "literals": [
           "solidity",
           "^",
@@ -768,10 +768,10 @@
       {
         "absolutePath": "zeppelin-solidity/contracts/token/ERC721/ERC721.sol",
         "file": "./ERC721.sol",
-        "id": 1811,
+        "id": 2075,
         "nodeType": "ImportDirective",
-        "scope": 1835,
-        "sourceUnit": 1889,
+        "scope": 2099,
+        "sourceUnit": 2153,
         "src": "26:22:5",
         "symbolAliases": [],
         "unitAlias": ""
@@ -779,40 +779,40 @@
       {
         "baseContracts": [
           {
-            "arguments": [],
+            "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 1812,
+              "id": 2076,
               "name": "ERC721",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1888,
+              "referencedDeclaration": 2152,
               "src": "359:6:5",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_ERC721_$1888",
+                "typeIdentifier": "t_contract$_ERC721_$2152",
                 "typeString": "contract ERC721"
               }
             },
-            "id": 1813,
+            "id": 2077,
             "nodeType": "InheritanceSpecifier",
             "src": "359:6:5"
           }
         ],
         "contractDependencies": [
-          1861,
-          1881,
-          1888,
-          1995
+          2125,
+          2145,
+          2152,
+          2259
         ],
         "contractKind": "contract",
         "documentation": "@title ERC-721 methods shipped in OpenZeppelin v1.7.0, removed in the latest version of the standard\n@dev Only use this interface for compatibility with previously deployed contracts\n@dev Use ERC721 for interacting with new contracts which are standard-compliant",
         "fullyImplemented": false,
-        "id": 1834,
+        "id": 2098,
         "linearizedBaseContracts": [
-          1834,
-          1888,
-          1881,
-          1861,
-          1995
+          2098,
+          2152,
+          2145,
+          2125,
+          2259
         ],
         "name": "DeprecatedERC721",
         "nodeType": "ContractDefinition",
@@ -820,7 +820,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 1818,
+            "id": 2082,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -828,15 +828,15 @@
             "name": "takeOwnership",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1816,
+              "id": 2080,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1815,
+                  "id": 2079,
                   "name": "_tokenId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1818,
+                  "scope": 2082,
                   "src": "393:16:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -845,7 +845,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1814,
+                    "id": 2078,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "393:7:5",
@@ -862,12 +862,12 @@
             },
             "payable": false,
             "returnParameters": {
-              "id": 1817,
+              "id": 2081,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "417:0:5"
             },
-            "scope": 1834,
+            "scope": 2098,
             "src": "370:48:5",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -876,7 +876,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 1825,
+            "id": 2089,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -884,15 +884,15 @@
             "name": "transfer",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1823,
+              "id": 2087,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1820,
+                  "id": 2084,
                   "name": "_to",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1825,
+                  "scope": 2089,
                   "src": "439:11:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -901,7 +901,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1819,
+                    "id": 2083,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "439:7:5",
@@ -915,10 +915,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 1822,
+                  "id": 2086,
                   "name": "_tokenId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1825,
+                  "scope": 2089,
                   "src": "452:16:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -927,7 +927,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1821,
+                    "id": 2085,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "452:7:5",
@@ -944,12 +944,12 @@
             },
             "payable": false,
             "returnParameters": {
-              "id": 1824,
+              "id": 2088,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "476:0:5"
             },
-            "scope": 1834,
+            "scope": 2098,
             "src": "421:56:5",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -958,7 +958,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 1833,
+            "id": 2097,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -966,15 +966,15 @@
             "name": "tokensOf",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1828,
+              "id": 2092,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1827,
+                  "id": 2091,
                   "name": "_owner",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1833,
+                  "scope": 2097,
                   "src": "498:14:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -983,7 +983,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1826,
+                    "id": 2090,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "498:7:5",
@@ -1000,25 +1000,25 @@
             },
             "payable": false,
             "returnParameters": {
-              "id": 1832,
+              "id": 2096,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1831,
+                  "id": 2095,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1833,
+                  "scope": 2097,
                   "src": "535:9:5",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
                     "typeIdentifier": "t_array$_t_uint256_$dyn_memory_ptr",
-                    "typeString": "uint256[] memory"
+                    "typeString": "uint256[]"
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 1829,
+                      "id": 2093,
                       "name": "uint256",
                       "nodeType": "ElementaryTypeName",
                       "src": "535:7:5",
@@ -1027,13 +1027,13 @@
                         "typeString": "uint256"
                       }
                     },
-                    "id": 1830,
+                    "id": 2094,
                     "length": null,
                     "nodeType": "ArrayTypeName",
                     "src": "535:9:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
-                      "typeString": "uint256[] storage pointer"
+                      "typeString": "uint256[]"
                     }
                   },
                   "value": null,
@@ -1042,14 +1042,14 @@
               ],
               "src": "534:11:5"
             },
-            "scope": 1834,
+            "scope": 2098,
             "src": "480:66:5",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 1835,
+        "scope": 2099,
         "src": "330:218:5"
       }
     ],
@@ -1057,9 +1057,9 @@
   },
   "compiler": {
     "name": "solc",
-    "version": "0.4.21+commit.dfe3193c.Emscripten.clang"
+    "version": "0.4.24+commit.e67f0147.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "2.0.0",
-  "updatedAt": "2018-07-11T23:39:01.970Z"
+  "schemaVersion": "2.0.1",
+  "updatedAt": "2018-07-30T04:11:57.830Z"
 }

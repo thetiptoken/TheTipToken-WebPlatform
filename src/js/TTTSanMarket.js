@@ -3,6 +3,20 @@ var marketSanAbi =
   {
     "constant": true,
     "inputs": [],
+    "name": "sanAddress",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
     "name": "owner",
     "outputs": [
       {

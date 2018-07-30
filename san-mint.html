@@ -94,9 +94,10 @@
 						<div class="card m-b-30">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text" id="basic-addon3">Enter your SAN <b>* 16 character max, not end in '.eth', and must contain 1 '.' *</b></span>
+                  <span class="input-group-text">Enter your SAN <b>* 16 character max, not end in '.eth', and must contain 1 '.' *</b></span>
+									<span class="input-group-text"><b>SAN creation costs 0 slots until a set amount is reached</b></span>
                 </div>
-                <input id="msan" type="text" class="form-control" id="receiver" aria-describedby="basic-addon3" placeholder="e.g jon.tip">
+                <input id="msan" type="text" class="form-control" id="receiver"  placeholder="e.g jon.tip">
               </div>
 							<div id="formatFail" class="alert alert-danger" role="alert" style="display:none;">
 									<strong>Error!</strong> Incorrect SAN format - minting will fail
@@ -120,7 +121,7 @@
 				<div class="col-xl-4">
 					<div class="input-group mb-3">
 						<div class="input-group-prepend">
-							<span class="input-group-text" id="basic-addon3">Current Slot Price : 2 TTT</b></span>
+							<span class="input-group-text" id="currSlotPrice">Current Slot Price : </b></span>
 						</div>
 						<button type="button" id="send" class="btn btn-primary" onclick="App.buySanSlots()">Buy A slot</button>
 					</div>

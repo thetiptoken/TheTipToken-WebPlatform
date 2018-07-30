@@ -1,7 +1,7 @@
-var contractAddress = "0x3a518A5F5AC3F3dBF4ECd6b91dfBbb8422832996";
-var sanAddress = "0xb6b3005C7Ce88cF32F7058EE0bb939A5DEF4c17c";
-var marketSanAddress = "0xB421cf13AC2D7eb73E042E29eFe056D29C3A9F99";
-var wallet = "0x5BcFCbdE79895D3D6A115Baf5386ae5463df2aAF";
+var contractAddress = "0x24358430f5b1f947B04D9d1a22bEb6De01CaBea2";
+var sanAddress = "0x799946d6B94394F3859dad6b66B7fb60E6Cd899A";
+var marketSanAddress = "0x36f024d74407c65f71fbd10e18e877bf692c466a";
+var wallet = "0x515165A6511734A4eFB5Cfb531955cf420b2725B";
 var token;
 var san;
 var marketSan;
@@ -63,11 +63,10 @@ function sanToImage(sanName, addr) {
     type: 'post',
     data: { "sanb" : img },
     success: function(link) {
-      link = link + ".png";
+      var img = link + ".png";
       console.log(link);
     //  if(link.includes("https://thetiptoken.io/arv/img")) {
-        san.sanMint(sanName, link, function(err, res) {
-          // or MM lose connection
+        san.sanMint(sanName, img, function(err, res) {
           if(err) {
             // delete link TODO
             var errOut = " Minting Error : " + err;
@@ -76,7 +75,7 @@ function sanToImage(sanName, addr) {
           else {
             var sucOut = '<a href="https://ropsten.etherscan.io/tx/'+res+'" target="_blank">'+res+'</a>';
             $("#txSuc").append(sucOut).show();
-            var outp = 'Your SANage : <img src=https://thetiptoken.io/arv/img/'+link+'" alt="icon" height="128px" width="128px" />'
+            var outp = 'Your SANage : <img src=https://thetiptoken.io/arv/img/'+img+'" alt="icon" height="128px" width="128px" />'
             $("#sanaged").html(outp);
           }
         });
@@ -144,19 +143,18 @@ App = {
       App.web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
     }
     var page = window.location.pathname.split("/").pop();
-    console.log("pga : " + page);
     web3 = new Web3(App.web3Provider);
     token = web3.eth.contract(abi).at(contractAddress);
     san = web3.eth.contract(sanAbi).at(sanAddress);
     web3.eth.getAccounts(function(a,b) {
       var modalStr = "";
-      if (web3.currentProvider.publicConfigStore._state.networkVersion == "1") {
-        modalStr += "- <b>Meta Mask is set to MAIN NET please use TEST NET while in testing phase</b><br>";
+      if (web3.currentProvider.publicConfigStore._state.networkVersion != "1") {
+        modalStr += "- <b>Meta Mask is set to TEST NET</b><br>";
       }
       if(b[0] == undefined) {
         modalStr += "- <b>No Meta Mask Detected, please use Meta Mask to interact with the platform</b><br>";
       } else {
-        modalStr += "<h2><b>Using public key : " + b[0] + "</b></h2><br><br>";
+        modalStr += "<b>Using public key : " + b[0] + "</b><br><br>";
         App.refreshBalance();
         if(page == "san-manage.html") {
             App.setUserTabs();
@@ -176,7 +174,7 @@ App = {
   },
 
   buySanSlots: function() {
-    var slotCost = 2;
+    var slotCost = 10;
     web3.eth.getAccounts(function(a,b) {
       token.approve(sanAddress, web3.toWei(slotCost, "ether"), {from: b[0]}, function(err, tx) {
         $("#sanSlotBuyTx").modal('show');
@@ -223,8 +221,14 @@ App = {
 
   setUserSanSlots: function() {
     web3.eth.getAccounts(function(a,b) {
-      san.getSanSlots.call(b[0], function(err, amt) {
-        $("#currSlotAmt").append(amt.toNumber());
+      if(b[0] !== undefined)
+        san.getSanSlots.call(b[0], function(err, amt) {
+          $("#currSlotAmt").append(amt.toNumber());
+        });
+      else
+        $("#currSlotAmt").append(0);
+      san.sanTTTCost.call(function(err, cost) {
+        $("#currSlotPrice").append(fromBigNumberWeiToEth(cost) + " TTT");
       });
     });
   },
@@ -314,6 +318,7 @@ App = {
                   console.log("tx failed");
                 } else if(txInfo.status == "0x1") {
                   marketSan.marketDirectPurchase(sanId, web3.toWei(minBd, "ether"), function(err, res) {
+                    if(err) console.log(err);
                     $("#sanMarketTx").modal('show');
                     $("#slotTx").append("<br><br>Tx Id : <a href='https://ropsten.etherscan.io/tx/"+res+"' target='_blank'>" + res + "</a><br><br>San will be added once the tx is complete. You can exit this window");
                   });
@@ -332,7 +337,7 @@ App = {
       });
     });
   },
-
+// V 2.0.0
   bidForSan: function() {
 
   },
@@ -344,7 +349,7 @@ App = {
       });
     });
   },
-
+//
   setUserTabs: function() {
     var mysanTbl = document.getElementById("mysanTbl");
     if(mysanTbl != undefined)
@@ -399,8 +404,10 @@ App = {
     $("#txSuc").hide();
     var ms = document.getElementById("msan").value;
     san.getSANitized.call(ms, function(err, res0) {
-      if(err) $("#formatFail").show();
-      else {
+      if(err) {
+        $("#formatFail").show();
+        console.log(err);
+      } else {
         web3.eth.getAccounts(function(a,b) {
           sanToImage(res0, b[0]);
         });
