@@ -1,6 +1,6 @@
 {
   "name": "TTTPlatform",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "The Tip Token Platform",
   "main": "truffle.js",
   "directories": {
@@ -13,13 +13,17 @@
   "author": "Jonathan Teel",
   "license": "ISC",
   "devDependencies": {
-    "lite-server": "^2.3.0"
+    "html-webpack-plugin": "^3.2.0",
+    "lite-server": "^2.3.0",
+    "uglifyjs-webpack-plugin": "^2.0.1",
+    "webpack": "^4.20.2"
   },
   "dependencies": {
     "bignumber": "^1.1.0",
     "request": "^2.0.0",
     "truffle-contract": "^3.0.5",
     "truffle-hdwallet-provider": "0.0.3",
+    "web3": "^1.0.0-beta.36",
     "zeppelin-solidity": "1.8.0"
   }
 }

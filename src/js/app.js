@@ -91,8 +91,8 @@ App = {
 
     var tts = tttSendGET("sanTo");
     if(tts) $("#receiver").val(tts);
-
     else console.log("ttt is null");
+
     $('.navigation-menu li.has-submenu a[href="#"]').on('click', function (e) {
         if ($(window).width() < 992) {
             e.preventDefault();
@@ -106,6 +106,7 @@ App = {
         $('body').delay(350).css({
             'overflow': 'visible'
         });
+
     });
 
     $('.slimscroll-noti').slimScroll({
@@ -128,8 +129,8 @@ App = {
         }
     });
 
-    var ft = '<div class="container-fluid"><div class="row"><div class="col-6">SAN TESTNET address : ';
-    ft += sanAddress + '</div><div class="col-6">TTT TESTNET address : ';
+    var ft = '<div class="container-fluid"><div class="row"><div class="col-6">SAN address : ';
+    ft += sanAddress + '</div><div class="col-6">TTT address : ';
     ft += contractAddress + '</div></div></div>';
     $('.footer').append(ft);
 
@@ -137,13 +138,7 @@ App = {
   },
 
   initWeb3: function() {
-    if (typeof web3 !== 'undefined') {
-      App.web3Provider = web3.currentProvider;
-    } else {
-      App.web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
-    }
     var page = window.location.pathname.split("/").pop();
-    web3 = new Web3(App.web3Provider);
     token = web3.eth.contract(abi).at(contractAddress);
     san = web3.eth.contract(sanAbi).at(sanAddress);
     web3.eth.getAccounts(function(a,b) {
@@ -337,7 +332,7 @@ App = {
       });
     });
   },
-// V 2.0.0
+
   bidForSan: function() {
 
   },
@@ -349,7 +344,7 @@ App = {
       });
     });
   },
-//
+
   setUserTabs: function() {
     var mysanTbl = document.getElementById("mysanTbl");
     if(mysanTbl != undefined)

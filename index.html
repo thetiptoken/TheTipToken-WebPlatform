@@ -65,6 +65,10 @@
 											<li>
 												<a href="san-mint.html"><i class="ti-bolt"></i>Mint a SAN</a>
 											</li>
+
+											<li>
+												<a href=""><i class="ti-bolt"></i>TTT Lotto (coming soon)</a>
+											</li>
 									</ul>
 							</div>
 					</div>
@@ -130,14 +134,30 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title mt-0" id="myLargeModalLabel">Platform Testing v 1.0.0</h5>
+                    <h5 class="modal-title mt-0" id="myLargeModalLabel">TTT Platform v 1.1.0</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 </div>
                 <div class="modal-body" id="tttInfoModalBody">
-                    <p>TTT SANs are live! The first 500 cost 0 SAN slots!</p>
+                    <p>TTT SANs are live! The first 500 cost 0 SAN slots! You only need to pay the transaction gas fee.</p>
 										<p>Thanks to all our testers, if you find any bugs please send an email to bounty@thetiptoken.io</p>
 										<p>For usage of dApps on mobile, we recomend <a href="https://status.im/" location="_blank">Staus.im</a></p>
-										<p>Marketplace is still on TEST NET - soon moving to main net.</p>
+										<p>Marketplace moving soon to main net.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+	</div>
+
+	<div class="col-sm-6 col-md-3 m-t-30">
+    <div class="modal fade" id="mmDenyModal" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title mt-0" id="myLargeModalLabel">TTT Platform v 1.1.0</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+                <div class="modal-body" id="mmDenyModal">
+                    <p>The confirmation from meta mask was denied, privacy mode is being honored. Expect limited usage.</p>
                 </div>
             </div>
         </div>
@@ -170,6 +190,21 @@ $(document).ready(function() {
     $('.row-offcanvas').toggleClass('active');
   });
 	$('#tttInfoModal').modal('show');
+});
+
+window.addEventListener('load', async () => {
+	if (window.ethereum) {
+	  window.web3 = new Web3(ethereum);
+	  try {
+    	await ethereum.enable();
+			// App.refreshBalance();
+	  } catch (error) {
+			$('#mmDenyModal').modal('show');
+	  }
+	}
+	else if (window.web3) {
+  	window.web3 = new Web3(web3.currentProvider);
+	}
 });
 </script>
 
